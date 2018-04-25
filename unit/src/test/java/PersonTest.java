@@ -1,22 +1,40 @@
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.math.BigDecimal;
 
-@DisplayName("Person")
-class PersonTest {
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
-    private Person person;
+public class PersonTest {
+
+    @Test
+    public void move() {
+        Person person;
+
+        Vector defaultPosition = mock(Vector.class);
+        Vector deplacement = mock(Vector.class);
+        Vector position = new Vector(1,1);
+
+        when(defaultPosition.add(deplacement)).thenReturn(position);
+
+        person = new Person("John Doe", defaultPosition);
+
+        person.move(deplacement);
+
+        assertEquals(position, person.getPosition());
+        verify(defaultPosition).add(deplacement);
+    }
 
 
     @Test
-    @DisplayName("should call vector add function")
-    void move() {
-        person = new Person("John Doe", new Vector(10, 20));
+    public void reset() {
+        Person person;
+        Vector defaultPosition = mock(Vector.class);
+        person = new Person("John",defaultPosition);
 
-        person.move(new Vector(-5, 20));
-        person.move(new Vector(-3, -4));
+        person.reset();
 
-        assertEquals(new Vector(2, 36), person.getPosition());
+        verify(defaultPosition).reset();
     }
+
 }

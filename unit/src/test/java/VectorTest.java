@@ -1,10 +1,8 @@
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("Vector")
-class VectorTest {
+public class VectorTest {
 
     private Vector firstVector;
 
@@ -12,8 +10,7 @@ class VectorTest {
 
 
     @Test
-    @DisplayName("should return added vectors")
-    void add() {
+    public void add() {
         firstVector = new Vector(1, 2);
         secondVector = new Vector(3, 3);
 
@@ -21,8 +18,7 @@ class VectorTest {
     }
 
     @Test
-    @DisplayName("should return added vectors with negatives")
-    void addNegatives() {
+    public void addNegatives() {
         firstVector = new Vector(1, -7);
         secondVector = new Vector(-1, -8);
 
@@ -30,8 +26,7 @@ class VectorTest {
     }
 
     @Test
-    @DisplayName("should cross positiv vectors")
-    void cross() {
+    public void cross() {
         firstVector = new Vector(1, 2);
         secondVector = new Vector(3, 3);
 
@@ -39,11 +34,17 @@ class VectorTest {
     }
 
     @Test
-    @DisplayName("should cross negativ vectors")
-    void crossNegatives() {
+    public void crossNegatives() {
         firstVector = new Vector(-11, -2);
         secondVector = new Vector(-4, 3);
 
-        assertEquals(-33-8, firstVector.cross(secondVector));
+        assertEquals(-33 - 8, firstVector.cross(secondVector));
+    }
+
+    @Test
+    public void reset() throws Exception {
+        firstVector = new Vector(1000, 1000);
+        firstVector.reset();
+        assertEquals(new Vector(0,0), firstVector);
     }
 }

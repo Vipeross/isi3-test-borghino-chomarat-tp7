@@ -34,7 +34,7 @@ class Vector {
     }
 
     public Vector add(Vector vector) {
-        return new Vector(xAxis.add(vector.yAxis), yAxis.add(vector.yAxis));
+        return new Vector(xAxis.add(vector.xAxis), yAxis.add(vector.yAxis));
     }
 
     /**
@@ -43,8 +43,8 @@ class Vector {
      * @param vector vector to cross with
      * @return x1*y2 - x2*y1
      */
-    public BigDecimal cross(Vector vector) {
-        return (xAxis.multiply(vector.yAxis)).add(yAxis.multiply(xAxis));
+    public int cross(Vector vector) {
+        return ((xAxis.multiply(vector.yAxis)).add(yAxis.negate().multiply(vector.xAxis))).intValue();
     }
 
     @Override
@@ -60,5 +60,10 @@ class Vector {
     public int hashCode() {
 
         return Objects.hash(xAxis, yAxis);
+    }
+
+    public void reset() {
+        this.xAxis = BigDecimal.ZERO;
+        this.yAxis = BigDecimal.ZERO;
     }
 }

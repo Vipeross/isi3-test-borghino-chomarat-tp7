@@ -31,6 +31,10 @@ public class Person {
         this.position = position.add(vector);
     }
 
+    public void reset() {
+        this.position.reset();
+    }
+
     @Override
     public String toString() {
         return "Person{" +
