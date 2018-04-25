@@ -1,28 +1,63 @@
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@DisplayName("Fizz Buzz Tests 😇")
-class FizzBuzzTest {
+public class FizzBuzzTest {
 
     private FizzBuzz main;
 
-
-    @ParameterizedTest
-    @DisplayName("should have list of integer of size length")
-    @ValueSource(ints = { 0, 1, 10, 100 })
-    void testListBuild(int length) {
-        main = new FizzBuzz(length);
-        assertEquals(main.getIntegerList().count(), length);
+    @Test
+    public void testNegativeLength() {
+        assertThrows(AssertionError.class, () -> main = new FizzBuzz(-1));
     }
 
     @Test
-    @DisplayName("should verify length positiv sign")
-    void testNegativeLength() {
-        assertThrows(AssertionError.class, () -> main = new FizzBuzz(-1));
+    public void testRule2() {
+        main = new FizzBuzz(100);
+        final List<String> fizzbuzzed = main.fizzBuzz();
+        assertEquals("1", fizzbuzzed.get(1));
+        assertEquals("Fizz", fizzbuzzed.get(3));
+    }
+
+    @Test
+    public void testRule3() {
+        main = new FizzBuzz(100);
+        final List<String> fizzbuzzed = main.fizzBuzz();
+        assertEquals("1", fizzbuzzed.get(1));
+        assertEquals("Buzz", fizzbuzzed.get(5));
+    }
+
+    @Test
+    public void testRule4() {
+        main = new FizzBuzz(100);
+        final List<String> fizzbuzzed = main.fizzBuzz();
+        assertEquals("1", fizzbuzzed.get(1));
+        assertEquals("Buzz", fizzbuzzed.get(15));
+    }
+
+    @Test
+    public void testRule5() {
+        main = new FizzBuzz(100);
+        final List<String> fizzbuzzed = main.fizzBuzz();
+        assertEquals("1", fizzbuzzed.get(1));
+        assertEquals("It's a trap !", fizzbuzzed.get(7));
+    }
+
+    @Test
+    public void testRule6() {
+        main = new FizzBuzz(100);
+        final List<String> fizzbuzzed = main.fizzBuzz();
+        assertEquals("1", fizzbuzzed.get(1));
+        assertEquals("La grande question sur la vie, l'univers et le reste!", fizzbuzzed.get(42));
+    }
+
+    @Test
+    public void testZero() {
+        main = new FizzBuzz(100);
+        final List<String> fizzbuzzed = main.fizzBuzz();
+        assertEquals("Buzz", fizzbuzzed.get(0));
     }
 }

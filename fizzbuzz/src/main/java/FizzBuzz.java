@@ -18,6 +18,38 @@ public class FizzBuzz {
 
 
     public List<String> fizzBuzz() {
-        return integerList.mapToObj(String::valueOf).collect(toList());
+
+        return integerList.mapToObj(elem -> {
+            String value = "";
+            boolean modified = false;
+            if (elem % 3 == 0)
+            {
+                value = "Fizz";
+                modified = true;
+            }
+            if (elem % 7 == 0)
+            {
+                value = "It's a trap !";
+                modified = true;
+            }
+            if (elem % 5 == 0 && elem % 3 == 0)
+            {
+                value = "Fizz Buzz";
+                modified = true;
+            }
+            if (elem % 5 == 0)
+            {
+                value = "Buzz";
+                modified = true;
+            }
+            if (elem == 42)
+            {
+                value = "La grande question sur la vie, l'univers et le reste!";
+                modified = true;
+            }
+            if(!modified)
+                value = String.valueOf(elem);
+            return value;
+        }).collect(toList());
     }
 }
